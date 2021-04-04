@@ -29,22 +29,24 @@ export default function MediaCard() {
   useEffect(() => {
     getGitHubUserWithFetch();
   }, []);
-
+// using fecthApi to fetch data from extenal api souce
   const getGitHubUserWithFetch = async () => {
     const response = await fetch(images);
     let jsonData = await response.json();
     setUserData(jsonData);
   };
-
+// looping throug an array
   let data = [];
   for (let i = 0; i < userData.length; i++) {
+    // looping throug an object
     for (const property in userData[i]) {
+      //pushing the url property to data array
       if (property === "url") {
         data.push(`${userData[i][property]}`);
       }
     }
   }
-
+  // randomly selecting the picture from data array
   let randomPic = data[Math.floor(Math.random() * data.length)];
 
   return (
